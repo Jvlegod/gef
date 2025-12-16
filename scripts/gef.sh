@@ -32,6 +32,13 @@ if [ -f "${HOME}/.gef-${tag}.py" ]; then
             sed -i "1i source ~/.gef-${tag}.py" ${HOME}/.gdbinit
         fi
     fi
+
+    xdg_init="${HOME}/.config/gdb/gdbinit"
+    if [ -f "${xdg_init}" ]; then
+        echo "[!] Detected ${xdg_init}"
+        echo "    If GEF doesn't auto-load on 'gdb' startup, GDB may be reading this file instead of ~/.gdbinit."
+        echo "    Fix: echo \"source ~/.gef-${tag}.py\" >> \"${xdg_init}\""
+    fi
     exit 0
 else
     echo "GEF was not properly downloaded"
